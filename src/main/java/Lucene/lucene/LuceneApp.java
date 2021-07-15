@@ -43,8 +43,8 @@ public class LuceneApp {
     	
     	//--indexing--//
     	if(path !=null && !path.isEmpty()) {
-//        File dataDir = new File(path);
-        File dataDir = new File("C:/Lucene/Data/");
+        File dataDir = new File(path);
+//        File dataDir = new File("C:/Lucene/Data/");
         String suffix = "txt";        
         LuceneApp indexer = new LuceneApp();        
         int numIndex = indexer.index(indexDir, dataDir, suffix);        
