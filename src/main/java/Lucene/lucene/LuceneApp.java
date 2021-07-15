@@ -38,8 +38,7 @@ public class LuceneApp {
 	
     public static void main(String[] args) throws Exception {  
     	
-    	File indexDir = new File("C:/Lucene/Index/");
-    	
+    	File indexDir = new File("C:/Lucene/Index/");    	
     	
     	//--indexing--//
     	if(path !=null && !path.isEmpty()) {
@@ -158,9 +157,10 @@ public class LuceneApp {
               System.out.println(data);
             }
             myReader.close();
-          } catch (FileNotFoundException e) {
+        }
+        catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
-          }
+        }
     }
 }
