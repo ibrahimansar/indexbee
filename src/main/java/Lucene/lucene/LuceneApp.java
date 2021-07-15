@@ -61,7 +61,7 @@ public class LuceneApp {
     	}
     	
     	//--List--//
-    	if(List !=null && !List.isEmpty() && List == "show") {
+    	if(List == "show") {
     		printPaths();
     	}
 
