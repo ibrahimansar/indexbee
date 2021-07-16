@@ -30,7 +30,7 @@ import Lucene.lucene.CommandLine.Option;
 public abstract class LuceneApp extends Indexing{
 	
 	@Option(names = "-path", description = "folder to be indexed; [usage: 'LuceneApp -path 'C:/User/data/' '] ")
-	static String path = "lucene";
+	static String path;
 	
     @Option(names = "-search", description = "Searches given name; [usage: 'LuceneApp -search 'Lucene' '] ")
 	static String Word;
@@ -40,14 +40,19 @@ public abstract class LuceneApp extends Indexing{
 	
     public static void main(String[] args) throws Exception {  
     	
-    	File indexDir = new File("C:/Lucene/Index/");    	
+    	File indexDir = new File("C:/Lucene/Index/");    
+    	
     	//--indexing--//
-    	if(path !=null && !path.isEmpty()) {
-//        File dataDir = new File(path);
-        File dataDir = new File("C:/Lucene/Data/");
-        String suffix = "txt";        
-        close(indexDir, dataDir, suffix);        
-        addPath(path);
+    	try{
+        	if(path !=null && !path.isEmpty()) {
+                File dataDir = new File(path);
+//                File dataDir = new File("C:/Lucene/Data/");
+                String suffix = "txt";        
+                close(indexDir, dataDir, suffix);        
+                addPath(path);
+            	}
+    	} catch (Exception e) {
+    		System.out.println("Directory not found");
     	}
         
         //--searching--//
