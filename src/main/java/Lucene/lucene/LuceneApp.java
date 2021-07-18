@@ -1,11 +1,13 @@
 package Lucene.lucene;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 import org.apache.lucene.analysis.SimpleAnalyzer;
@@ -29,6 +31,8 @@ import Lucene.lucene.CommandLine.Option;
 @Command(name = "LuceneApp", description = "App to perform Lucene indexing and searching operations", mixinStandardHelpOptions = true, version = "LuceneApp 1.0")
 public abstract class LuceneApp extends Indexing{
 	
+	
+	
 	@Option(names = "-path", description = "folder to be indexed; [usage: 'LuceneApp -path 'C:/User/data/' '] ")
 	static String path;
 	
@@ -36,11 +40,16 @@ public abstract class LuceneApp extends Indexing{
 	static String Word;
     
     @Option(names = "-list", description = "Lists all indexed folder; [usage: 'LuceneApp -list 'show' '] ")
-	static String List;
+	static String List = "show";
 	
+    @Option(names = "-delete", description = "delete indexed folder; [usage: 'LuceneApp -Del 'C:/User/data/' '] ")
+	static String Del;
+    
+    public static String indexFile = "C:/User/%USERPROFILE%/List.txt";
+    
     public static void main(String[] args) throws Exception {  
     	
-    	File indexDir = new File("C:/Lucene/Index/");    
+    	File indexDir = new File("C:/User/%USERPROFILE%/");    	
     	
     	//--indexing--//
     	try{
@@ -67,7 +76,15 @@ public abstract class LuceneApp extends Indexing{
     	if(List == "show") {
     		printPaths();
     	}
-
+    	
+    	//--Deleting path from list--//
+    	if(Del !=null && !Del.isEmpty()) {
+        String result = fileToString(indexFile);
+        result = result.replaceAll(Del, "");
+        PrintWriter writer = new PrintWriter(new File(indexFile));
+        writer.append(result);
+        writer.flush();
+    	}
     } 
     
     //searching method    
@@ -96,10 +113,10 @@ public abstract class LuceneApp extends Indexing{
     
     //List methods   
     	//Adding path to list
-    private static void addPath(String path) {
-    	String fileName = "C:\\Lucene\\List.txt";
-        try {
-            BufferedWriter out = new BufferedWriter(new FileWriter(fileName, true));
+    private static void addPath(String path) {	
+        try {  
+        	BufferedWriter out = new BufferedWriter(new FileWriter(indexFile, true));
+            System.out.println(path);
             out.write(path + "\n");
             out.close();
         }
@@ -110,9 +127,8 @@ public abstract class LuceneApp extends Indexing{
     
     	//printing list
     private static void printPaths() {
-    	String fileName = "C:\\Lucene\\List.txt";
         try {
-            File myObj = new File(fileName);
+            File myObj = new File(indexFile);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
               String data = myReader.nextLine();
@@ -125,8 +141,22 @@ public abstract class LuceneApp extends Indexing{
             e.printStackTrace();
         }
     }
+    
+    //deleting methods
+    public static String fileToString(String filePath) throws Exception{
+        String input = null;
+        Scanner sc = new Scanner(new File(filePath));
+        StringBuffer sb = new StringBuffer();
+        while (sc.hasNextLine()) {
+           input = sc.nextLine();
+           sb.append(input);
+        }
+        return sb.toString();
+     }
 }
 
+
+	//indexing methods
 abstract class Indexing implements AutoCloseable{
 	public static void close(File indexDir, File dataDir, String suffix) throws Exception {
 		// TODO Auto-generated method stub
