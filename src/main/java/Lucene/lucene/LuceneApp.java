@@ -1,19 +1,16 @@
 package Lucene.lucene;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Scanner;
 
 import org.apache.lucene.analysis.SimpleAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
+import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.Term;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
@@ -29,61 +26,53 @@ import Lucene.lucene.CommandLine.Option;
 
 
 @Command(name = "LuceneApp", description = "App to perform Lucene indexing and searching operations", mixinStandardHelpOptions = true, version = "LuceneApp 1.0")
-public abstract class LuceneApp extends Indexing{
-	
+public abstract class LuceneApp extends Indexing{	
 	
 	
 	@Option(names = "-path", description = "folder to be indexed; [usage: 'LuceneApp -path 'C:/User/data/' '] ")
 	static String path;
+//	static String path = "C:/Lucene/Data/";
 	
     @Option(names = "-search", description = "Searches given name; [usage: 'LuceneApp -search 'Lucene' '] ")
 	static String Word;
+//    static String Word = "Lucene";
     
     @Option(names = "-list", description = "Lists all indexed folder; [usage: 'LuceneApp -list 'show' '] ")
-	static String List = "show";
+	static String List;
 	
     @Option(names = "-delete", description = "delete indexed folder; [usage: 'LuceneApp -Del 'C:/User/data/' '] ")
-	static String Del;
-    
-    public static String indexFile = "C:/User/%USERPROFILE%/List.txt";
+	static String Del = "C:\\Lucene\\Data\\Doc1.txt";
     
     public static void main(String[] args) throws Exception {  
     	
-    	File indexDir = new File("C:/User/%USERPROFILE%/");    	
+    	File indexDir = new File("C:/Lucene/Index");    	
     	
     	//--indexing--//
     	try{
         	if(path !=null && !path.isEmpty()) {
                 File dataDir = new File(path);
-//                File dataDir = new File("C:/Lucene/Data/");
                 String suffix = "txt";        
-                close(indexDir, dataDir, suffix);        
-                addPath(path);
+                close(indexDir, dataDir, suffix);     
             	}
     	} catch (Exception e) {
     		System.out.println("Directory not found");
-    	}
+    	} 
         
         //--searching--//
     	if(Word !=null && !Word.isEmpty()) {
         String query = Word;
-//        String query = "lucene";
         int hits = 100;        
         searchIndex(indexDir, query, hits);
     	}
     	
     	//--List--//
     	if(List == "show") {
-    		printPaths();
+    		PrintIndex(indexDir);
     	}
     	
     	//--Deleting path from list--//
-    	if(Del !=null && !Del.isEmpty()) {
-        String result = fileToString(indexFile);
-        result = result.replaceAll(Del, "");
-        PrintWriter writer = new PrintWriter(new File(indexFile));
-        writer.append(result);
-        writer.flush();
+    	if(Del !=null && !Del.isEmpty()) {    		
+    		delDocuments(indexDir, "path", Del);
     	}
     } 
     
@@ -102,64 +91,36 @@ public abstract class LuceneApp extends Indexing{
             int docId = hits[i].doc;
             Document d = searcher.doc(docId);
             System.out.println(d.get("filename"));
-        }
-        
+        }        
         System.out.println("Found " + hits.length);        
       }
       catch (FileNotFoundException e) {
     	  System.out.println("Indexing directory not found");
       }
-    }
+    }    
     
-    //List methods   
-    	//Adding path to list
-    private static void addPath(String path) {	
-        try {  
-        	BufferedWriter out = new BufferedWriter(new FileWriter(indexFile, true));
-            System.out.println(path);
-            out.write(path + "\n");
-            out.close();
-        }
-        catch (IOException e) {
-            System.out.println("exception occoured" + e);
-        }
-    }
-    
-    	//printing list
-    private static void printPaths() {
-        try {
-            File myObj = new File(indexFile);
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-              String data = myReader.nextLine();
-              System.out.println(data);
-            }
-            myReader.close();
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
+    //print indexed documents
+    private static void PrintIndex(File indexDir) throws IOException { 	
+    	IndexReader reader = IndexReader.open(FSDirectory.open(indexDir));
+    	for (int i=0; i<reader.maxDoc(); i++) {
+    	    Document doc = reader.document(i);
+    	    String Files = doc.get("filename");
+    	    System.out.println(Files);
+    	}
+    }    
     
     //deleting methods
-    public static String fileToString(String filePath) throws Exception{
-        String input = null;
-        Scanner sc = new Scanner(new File(filePath));
-        StringBuffer sb = new StringBuffer();
-        while (sc.hasNextLine()) {
-           input = sc.nextLine();
-           sb.append(input);
-        }
-        return sb.toString();
-     }
+	public static void delDocuments(File indexDir, String field, String termText) throws IOException {
+		Term term = new Term(field, termText);
+		IndexWriter indexWriter = new IndexWriter( FSDirectory.open(indexDir), new SimpleAnalyzer(), true, IndexWriter.MaxFieldLength.LIMITED);
+		indexWriter.deleteDocuments(term);
+		indexWriter.close();
+	}	
 }
-
 
 	//indexing methods
 abstract class Indexing implements AutoCloseable{
 	public static void close(File indexDir, File dataDir, String suffix) throws Exception {
-		// TODO Auto-generated method stub
         IndexWriter indexWriter = new IndexWriter( FSDirectory.open(indexDir), new SimpleAnalyzer(), true, IndexWriter.MaxFieldLength.LIMITED);
         indexWriter.setUseCompoundFile(false);     
         IndexDir indexDirectory = new IndexDir();
@@ -184,25 +145,19 @@ class IndexDir {
                 indexFileWithIndexWriter(indexWriter, f, suffix);
             }
         }
-
     }
     
     private void indexFileWithIndexWriter(IndexWriter indexWriter, File f, String suffix) throws IOException {
         if (f.isHidden() || f.isDirectory() || !f.canRead() || !f.exists()) {
             return;
-        }
-
-        
+        }        
         if (suffix!=null && !f.getName().endsWith(suffix)) {
             return;
-        }
-        
-        System.out.println("Indexing file:... " + f.getCanonicalPath());
-        
+        }        
+        System.out.println("Indexing file:... " + f.getCanonicalPath());        
         Document doc = new Document();
         doc.add(new Field("contents", new FileReader(f)));        
-        doc.add(new Field("filename", f.getCanonicalPath(), Field.Store.YES, Field.Index.ANALYZED));
-        
+        doc.add(new Field("filename", f.getCanonicalPath(), Field.Store.YES, Field.Index.ANALYZED));        
         indexWriter.addDocument(doc);
     }
 }
