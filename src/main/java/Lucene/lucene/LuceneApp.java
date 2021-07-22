@@ -10,6 +10,7 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.queryParser.QueryParser;
@@ -39,7 +40,8 @@ public abstract class LuceneApp extends Indexing{
 	static String List;
 	
     @Option(names = "-delete", description = "delete indexed folder; [usage: 'LuceneApp -Del 'C:/User/data/' '] ")
-	static String Del = "C:\\Lucene\\Data\\Doc1.txt";
+    static String Del;
+//	static String Del = "C:\\Lucene\\Data\\Doc1.txt";
     
     public static void main(String[] args) throws Exception {  
     	
@@ -119,7 +121,9 @@ public abstract class LuceneApp extends Indexing{
 	//indexing methods
 abstract class Indexing implements AutoCloseable{
 	public static void close(File indexDir, File dataDir, String suffix) throws Exception {
-        IndexWriter indexWriter = new IndexWriter( FSDirectory.open(indexDir), new SimpleAnalyzer(), true, IndexWriter.MaxFieldLength.LIMITED);
+		IndexWriterConfig conf = new IndexWriterConfig(Version.LUCENE_20, new SimpleAnalyzer());
+		conf.setOpenMode(IndexWriterConfig.OpenMode.APPEND);
+        IndexWriter indexWriter = new IndexWriter( FSDirectory.open(indexDir), conf);
         indexWriter.setUseCompoundFile(false);     
         IndexDir indexDirectory = new IndexDir();
         indexDirectory.indexDirectory(indexWriter, dataDir, suffix);        
