@@ -41,7 +41,7 @@ public abstract class LuceneApp extends Indexing{
 	
     @Option(names = "-delete", description = "delete indexed folder; [usage: 'LuceneApp -Del 'C:/User/data/' '] ")
     static String Del;
-//	static String Del = "C:\\Lucene\\Data\\Doc1.txt";
+//	static String Del = "C:/Lucene/Data/Doc6.txt";
     
     public static void main(String[] args) throws Exception {  
     	
@@ -112,10 +112,12 @@ public abstract class LuceneApp extends Indexing{
     //deleting methods
 	public static void delDocuments(File indexDir, String field, String termText) throws IOException {
 		Term term = new Term(field, termText);
+		@SuppressWarnings("deprecation")
 		IndexWriter indexWriter = new IndexWriter( FSDirectory.open(indexDir), new SimpleAnalyzer(), true, IndexWriter.MaxFieldLength.LIMITED);
 		indexWriter.deleteDocuments(term);
 		indexWriter.close();
 	}	
+
 }
 
 	//indexing methods
