@@ -9,16 +9,16 @@ public abstract class LuceneApp extends Indexing{
 	
 	
 	@Option(names = "-path", description = "folder to be indexed; [usage: 'LuceneApp -path 'C:/User/data/' '] ")
-//	static String path;
-	static String path = "C:/Lucene/Data";
+	static String path;
+//	static String path = "C:/Lucene/Data1";
 	
     @Option(names = "-search", description = "Searches given name; [usage: 'LuceneApp -search 'Lucene' '] ")
 	static String Word;
-//    static String Word = "Lucene";
+//    static String Word = "lucene";
     
     @Option(names = "-list", description = "Lists all indexed folder; [usage: 'LuceneApp -list 'show' '] ")
-	static String List = "show";
-//    static String List;
+//	static String List = "show";
+    static String List;
 	
     @Option(names = "-delete", description = "delete indexed folder; [usage: 'LuceneApp -Del 'C:/User/data/' '] ")
     static String Del;    
@@ -32,7 +32,7 @@ public abstract class LuceneApp extends Indexing{
     	if(path !=null && !path.isEmpty()) {
     		try(Indexing i = new Indexing()){
                 File dataDir = new File(path);
-                String suffix = "txt"; 
+                String suffix = "txt";                 
     			i.index(indexDir, dataDir, suffix);
     		} catch(Exception e) {
     			System.out.println(e);
@@ -52,8 +52,9 @@ public abstract class LuceneApp extends Indexing{
     	}
     	
     	//--Deleting path from list--//
-    	if(Del !=null && !Del.isEmpty()) {    		
-    		Delete.delDocuments(indexDir, "folder", Del);
+    	if(Del !=null && !Del.isEmpty()) {
+    		File DataDir = new File(Del);
+    		Delete.delDocuments(indexDir, "path", DataDir);
     	}
     } 	
 }

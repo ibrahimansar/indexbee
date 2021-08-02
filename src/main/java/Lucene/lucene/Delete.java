@@ -9,10 +9,13 @@ import org.apache.lucene.index.Term;
 import org.apache.lucene.store.FSDirectory;
 
 public class Delete {
-	public static void delDocuments(File indexDir, String field, String termText) throws IOException {
-		Term term = new Term(field, termText);
+	public static void delDocuments(File indexDir, String field, File termText) throws IOException {
+    	String DirectoryName = termText.getName();
+    	File Dir = new File(indexDir.getAbsolutePath() + "\\" + DirectoryName); 
+    	String dirName = Dir.getAbsolutePath();
+		Term term = new Term(field, dirName);
 		@SuppressWarnings("deprecation")
-		IndexWriter indexWriter = new IndexWriter( FSDirectory.open(indexDir), new SimpleAnalyzer(), true, IndexWriter.MaxFieldLength.LIMITED);
+		IndexWriter indexWriter = new IndexWriter( FSDirectory.open(Dir), new SimpleAnalyzer(), true, IndexWriter.MaxFieldLength.LIMITED);
 		indexWriter.deleteDocuments(term);
 		indexWriter.close();
 	}
