@@ -12,7 +12,7 @@ public class Delete {
 	public static void delDocuments(File indexDir, String field, File termText) throws IOException {
     	String DirectoryName = termText.getName();
     	File Dir = new File(indexDir.getAbsolutePath() + "\\" + DirectoryName); 
-    	String dirName = Dir.getAbsolutePath();
+    	String dirName = termText.getAbsolutePath();
 		Term term = new Term(field, dirName);
 		@SuppressWarnings("deprecation")
 		IndexWriter indexWriter = new IndexWriter( FSDirectory.open(Dir), new SimpleAnalyzer(), true, IndexWriter.MaxFieldLength.LIMITED);

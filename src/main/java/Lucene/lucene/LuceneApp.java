@@ -17,12 +17,12 @@ public abstract class LuceneApp extends Indexing{
 //    static String Word = "lucene";
     
     @Option(names = "-list", description = "Lists all indexed folder; [usage: 'LuceneApp -list 'show' '] ")
-//	static String List = "show";
-    static String List;
+	static String List = "show";
+//    static String List;
 	
     @Option(names = "-delete", description = "delete indexed folder; [usage: 'LuceneApp -Del 'C:/User/data/' '] ")
-    static String Del;    
-//	static String Del = "C:/Lucene/Data1";
+//    static String Del;    
+	static String Del = "C:/Lucene/Data";
     
     public static void main(String[] args) throws Exception {  
     	
