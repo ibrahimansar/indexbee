@@ -10,19 +10,19 @@ public abstract class LuceneApp extends Indexing{
 	
 	@Option(names = "-path", description = "folder to be indexed; [usage: 'LuceneApp -path 'C:/User/data/' '] ")
 	static String path;
-//	static String path = "C:/Lucene/Data1";
+//	static String path = "C:/Lucene/Data";
 	
     @Option(names = "-search", description = "Searches given name; [usage: 'LuceneApp -search 'Lucene' '] ")
 	static String Word;
 //    static String Word = "lucene";
     
     @Option(names = "-list", description = "Lists all indexed folder; [usage: 'LuceneApp -list 'show' '] ")
-	static String List = "show";
-//    static String List;
+//	static String List = "show";
+    static String List;
 	
     @Option(names = "-delete", description = "delete indexed folder; [usage: 'LuceneApp -Del 'C:/User/data/' '] ")
-//    static String Del;    
-	static String Del = "C:/Lucene/Data";
+    static String Del;    
+//	static String Del = "C:/Lucene/Data";
     
     public static void main(String[] args) throws Exception {  
     	

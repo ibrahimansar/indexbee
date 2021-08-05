@@ -25,7 +25,7 @@ class Indexing implements AutoCloseable{
     	}    	
 		IndexWriterConfig conf = new IndexWriterConfig(Version.LUCENE_20, new SimpleAnalyzer());
 		conf.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
-        IndexWriter indexWriter = new IndexWriter( FSDirectory.open(indexDir), conf);
+        IndexWriter indexWriter = new IndexWriter( FSDirectory.open(Dir), conf);
         indexWriter.setUseCompoundFile(false);
  
         File[] files = dataDir.listFiles();
