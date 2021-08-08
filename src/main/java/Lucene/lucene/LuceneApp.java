@@ -14,7 +14,7 @@ public abstract class LuceneApp extends Indexing{
 	
     @Option(names = "-search", description = "Searches given name; [usage: 'LuceneApp -search 'Lucene' '] ")
 	static String Word;
-//    static String Word = "lucene";
+//    static String Word = "and";
     
     @Option(names = "-list", description = "Lists all indexed folder; [usage: 'LuceneApp -list 'show' '] ")
 //	static String List = "show";
@@ -41,9 +41,9 @@ public abstract class LuceneApp extends Indexing{
         
         //--searching--//
     	if(Word !=null && !Word.isEmpty()) {
-        String query = Word;
-        int hits = 100;        
-        Search.searchIndex(indexDir, query, hits);
+	        String query = Word;
+	        int hits = 100;        
+	        Search.searchIndex(indexDir, query, hits);
     	}
     	
     	//--List--//

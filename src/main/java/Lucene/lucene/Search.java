@@ -36,13 +36,14 @@ public class Search {
 		            if(!list.contains(d.get("path"))) {
 		            	list.add(d.get("path"));
 		            }
-		        }               
+		        } 
+		        
 		      }
 	    	for(String print : list) {
 	    		System.out.println(print);
 	    	}
 	    	if(list.size()!=0) {
-	    		System.out.println("the word \'" + queryStr + "\' found in " + list.size() + " files");
+	    		System.out.println("\n the word \'" + queryStr + "\' found in " + list.size() + " files in \'" + indexDir + "\' Directory. \n");
 	    	}	    	
     	}
     } 
