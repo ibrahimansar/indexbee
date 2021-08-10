@@ -44,11 +44,3 @@ public class Search {
 	    	}	    	
     	}
     } 
-
-
-
-
-
-//if(list.size()!=0) {
-//System.out.println("\n the word \'" + queryStr + "\' found in " + list.size() + " files in \'" + indexDir + "\' Directory. \n");
-//}

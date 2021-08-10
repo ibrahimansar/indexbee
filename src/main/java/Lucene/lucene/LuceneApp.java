@@ -13,8 +13,8 @@ public abstract class LuceneApp extends Indexing{
 //	static String path = "C:/Lucene/Data";
 	
     @Option(names = "-search", description = "Searches given name; [usage: 'LuceneApp -search 'Lucene' '] ")
-	static String Word;
-//    static String Word = "and";
+//	static String Word;
+    static String Word = "and";
     
     @Option(names = "-list", description = "Lists all indexed folder; [usage: 'LuceneApp -list 'show' '] ")
 //	static String List = "show";
