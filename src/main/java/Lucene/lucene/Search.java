@@ -41,10 +41,14 @@ public class Search {
 		      }
 	    	for(String print : list) {
 	    		System.out.println(print);
-	    	}
-	    	if(list.size()!=0) {
-	    		System.out.println("\n the word \'" + queryStr + "\' found in " + list.size() + " files in \'" + indexDir + "\' Directory. \n");
 	    	}	    	
     	}
     } 
 
+
+
+
+
+//if(list.size()!=0) {
+//System.out.println("\n the word \'" + queryStr + "\' found in " + list.size() + " files in \'" + indexDir + "\' Directory. \n");
+//}
