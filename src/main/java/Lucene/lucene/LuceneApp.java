@@ -10,11 +10,11 @@ public abstract class LuceneApp extends Indexing{
 	
 	@Option(names = "-path", description = "folder to be indexed; [usage: 'LuceneApp -path 'C:/User/data/' '] ")
 	static String path;
-//	static String path = "C:/Lucene/Data";
+//	static String path = "C:/Lucene/Data1";
 	
     @Option(names = "-search", description = "Searches given name; [usage: 'LuceneApp -search 'Lucene' '] ")
-//	static String Word;
-    static String Word = "and";
+	static String Word;
+//    static String Word = "and";
     
     @Option(names = "-list", description = "Lists all indexed folder; [usage: 'LuceneApp -list 'show' '] ")
 //	static String List = "show";
@@ -26,7 +26,8 @@ public abstract class LuceneApp extends Indexing{
     
     public static void main(String[] args) throws Exception {  
     	
-    	File indexDir = new File("C:/Lucene/Index");    	
+    	String uname = System.getProperty("user.name");
+    	File indexDir = new File("C:/Users/" + uname + "/Index");
     	
     	//--indexing--//
     	if(path !=null && !path.isEmpty()) {
