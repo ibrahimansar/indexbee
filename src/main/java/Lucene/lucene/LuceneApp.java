@@ -5,8 +5,7 @@ import Lucene.lucene.CommandLine.Command;
 import Lucene.lucene.CommandLine.Option;
 
 @Command(name = "LuceneApp", description = "App to perform Lucene indexing and searching operations", mixinStandardHelpOptions = true, version = "LuceneApp 1.0")
-public abstract class LuceneApp extends Indexing{	
-	
+public abstract class LuceneApp extends Indexing{
 	
 	@Option(names = "-path", description = "folder to be indexed; [usage: 'LuceneApp -path 'C:/User/data/' '] ")
 	static String path;
