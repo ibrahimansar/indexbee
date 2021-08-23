@@ -1,85 +1,25 @@
 package Lucene.lucene;
-//
 import java.io.File;
 import java.io.IOException;
 
 import Lucene.lucene.CommandLine.Command;
 import Lucene.lucene.CommandLine.Option;
-//
-//@Command(name = "LuceneApp", description = "App to perform Lucene indexing and searching operations", mixinStandardHelpOptions = true, version = "LuceneApp 1.0")
-//public abstract class LuceneApp extends Indexing{
-//	
-//	@Option(names = "-path", description = "folder to be indexed; [usage: 'LuceneApp -path 'C:/Lucene/data/' '] ")
-//	static String path;
-////	static String path = "C:/Lucene/Data";
-//	
-//    @Option(names = "-search", description = "Searches given name; [usage: 'LuceneApp -search 'Lucene' '] ")
-//	static String Word;
-////    static String Word = "and";
-//    
-//    @Option(names = "-list", description = "Lists all indexed folder; [usage: 'LuceneApp -list 'show' '] ")
-////	static String List = "show";
-//    static String List;
-//	
-//    @Option(names = "-delete", description = "delete indexed folder; [usage: 'LuceneApp -Del 'C:/User/data/' '] ")
-//    static String Del;    
-////	static String Del = "C:/Lucene/Data";
-//    
-//    public static void main(String[] args) throws Exception {  
-//    	
-//    	String uname = System.getProperty("user.name");
-//    	File indexDir = new File("C:/Users/" + uname + "/Index");
-//    	
-//    	//--indexing--//
-//    	if(path !=null && !path.isEmpty()) {
-//    		try(Indexing i = new Indexing()){
-//                File dataDir = new File(path);
-//                String suffix = "txt";                 
-//    			i.index(indexDir, dataDir, suffix);
-//    		} catch(Exception e) {
-//    			System.out.println(e);
-//    		}
-//        }
-//        
-//        //--searching--//
-//    	if(Word !=null && !Word.isEmpty()) {
-//	        String query = Word;
-//	        int hits = 100;        
-//	        Search.searchIndex(indexDir, query, hits);
-//    	}
-//    	
-//    	//--List--//
-//    	if(List == "show") {
-//    		Print.PrintIndex(indexDir);
-//    	}
-//    	
-//    	//--Deleting path from list--//
-//    	if(Del !=null && !Del.isEmpty()) {
-//    		File DataDir = new File(Del);
-//    		Delete.delDocuments(indexDir, "path", DataDir);
-//    	}
-//    } 	
-//}
 
 @Command(name = "Lucene", description = "App to perform Lucene indexing and searching operations", mixinStandardHelpOptions = true, version = "1.0")
 class LuceneApp extends Indexing implements Runnable { 
 
-	@Option(names = "-path", description = "folder to be indexed; [usage: 'LuceneApp -path 'C:/Lucene/data/' '] ")
+	@Option(names = "-path", description = "folder to be indexed; [usage: 'Lucene -path 'C:/Lucene/data' '] ")
 	private String path;
 	
-    @Option(names = "-search", description = "Searches given name; [usage: 'LuceneApp -search 'Lucene' '] ")
+    @Option(names = "-search", description = "Searches given name; [usage: 'Lucene -search 'Lucene' '] ")
     private String Word;
     
-    @Option(names = "-list", description = "Lists all indexed folder; [usage: 'LuceneApp -list 'show' '] ")
+    @Option(names = "-list", description = "Lists all indexed folder; [usage: 'Lucene -list 'show' '] ")
 	private String List = "list";
 	
-    @Option(names = "-delete", description = "delete indexed folder; [usage: 'LuceneApp -Del 'C:/User/data/' '] ")
+    @Option(names = "-delete", description = "delete indexed folder; [usage: 'Lucene -delete 'C:/Lucene/data' '] ")
 	private String Del;
     
-    public static void main(String... args) {
-        int exitCode = new CommandLine(new LuceneApp()).execute(args);
-        System.exit(exitCode);
-    }
     @Override
     public void run() {
     	String uname = System.getProperty("user.name");
@@ -128,5 +68,9 @@ class LuceneApp extends Indexing implements Runnable {
 				e.printStackTrace();
 			}
     	}
+    }
+    public static void main(String... args) {
+        int exitCode = new CommandLine(new LuceneApp()).execute(args);
+        System.exit(exitCode);
     }
 }
