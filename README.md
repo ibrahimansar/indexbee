@@ -22,7 +22,7 @@ to perform some of it's operations such as indexing documents and searching word
 To index the text contained in one or more documents, enter the folder path as the example given below.
 
 ```sh
-LuceneApp -path "C:/LuceneData/TestFolder1/" 
+LuceneApp -path C:/LuceneData/TestFolder1 
 ```
 
 
@@ -30,7 +30,7 @@ LuceneApp -path "C:/LuceneData/TestFolder1/"
 To search a word, enter your word followed by -search as below.
 
 ```sh
-LuceneApp -search "Lucene" 
+LuceneApp -search Lucene 
 ```
 
 
@@ -38,13 +38,13 @@ LuceneApp -search "Lucene"
 Enter -list "show" command to list all the indexed folder paths
 
 ```sh
-LuceneApp -list "show" 
+LuceneApp -list show 
 ```
 ### *delete the  folder paths*
 To delete a path from the list, enter the path to be deleted
 
 ```sh
-LuceneApp -delete "C:/LuceneData/TestFolder1/" 
+LuceneApp -delete C:/LuceneData/TestFolder1
 ```
 ---
 #### **Thanks for using our Application**
