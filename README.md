@@ -12,7 +12,7 @@ to perform some of it's operations such as indexing documents and searching word
 
 ## Installation
 
-- Download [Lucene App](https://drive.google.com/file/d/13tF0pgzOCsqiw_v25infGev4stXBM7HU/view?usp=sharing) from this repository.
+- Download [Lucene App](https://drive.google.com/file/d/13tF0pgzOCsqiw_v25infGev4stXBM7HU/view?usp=sharing).
 - Install it in your local machine.
 - Add installation path in your environmental variable.
 ---
