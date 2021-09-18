@@ -1,12 +1,11 @@
 package Lucene.lucene;
 import java.io.File;
 import java.io.IOException;
-
 import Lucene.lucene.CommandLine.Command;
 import Lucene.lucene.CommandLine.Option;
 
 @Command(name = "Lucene", description = "App to perform Lucene indexing and searching operations", mixinStandardHelpOptions = true, version = "1.0")
-class LuceneApp extends Indexing implements Runnable { 
+class LuceneApp extends LuceneIndexing implements Runnable { 
 
 	@Option(names = "-path", description = "folder to be indexed; [usage: 'Lucene -path 'C:/Lucene/data' '] ")
 	private String path;
@@ -15,7 +14,7 @@ class LuceneApp extends Indexing implements Runnable {
     private String Word;
     
     @Option(names = "-list", description = "Lists all indexed folder; [usage: 'Lucene -list 'show' '] ")
-	private String List = "list";
+	private String List = "show";
 	
     @Option(names = "-delete", description = "delete indexed folder; [usage: 'Lucene -delete 'C:/Lucene/data' '] ")
 	private String Del;
@@ -27,7 +26,7 @@ class LuceneApp extends Indexing implements Runnable {
     	
     	//--indexing--//
     	if(path !=null && !path.isEmpty()) {
-    		try(Indexing i = new Indexing()){
+    		try(LuceneIndexing i = new LuceneIndexing()){
                 File dataDir = new File(path);
                 String suffix = "txt";                 
     			i.index(indexDir, dataDir, suffix);
@@ -41,7 +40,7 @@ class LuceneApp extends Indexing implements Runnable {
 	        String query = Word;
 	        int hits = 100;        
 	        try {
-				Search.searchIndex(indexDir, query, hits);
+				LuceneSearch.searchIndex(indexDir, query, hits);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -51,7 +50,7 @@ class LuceneApp extends Indexing implements Runnable {
     	//--List--//
     	if(!List.isEmpty() && List.equals("show")) {
     		try {
-				Print.PrintIndex(indexDir);
+				LucenePrint.PrintIndex(indexDir);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -62,7 +61,7 @@ class LuceneApp extends Indexing implements Runnable {
     	if(Del !=null && !Del.isEmpty()) {
     		File DataDir = new File(Del);
     		try {
-				Delete.delDocuments(indexDir, "path", DataDir);
+				LuceneDelete.delDocuments(indexDir, "path", DataDir);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
