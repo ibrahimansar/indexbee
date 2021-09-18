@@ -1,6 +1,9 @@
 package Lucene.lucene;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 import org.apache.http.HttpHost;
@@ -16,17 +19,18 @@ import org.elasticsearch.common.settings.Settings;
 
 class ESIndexing {
 	@SuppressWarnings("deprecation")
-	public static void main(){
-		System.out.println("Indexing in ESApp");
+	public static void Index(File dataDir, String uname){
 		RestHighLevelClient client = new RestHighLevelClient(
 		RestClient.builder(new HttpHost("localhost", 9200, "http")));
-		
-		GetIndexRequest getRequest = new GetIndexRequest("es");
+        
+		GetIndexRequest getRequest = new GetIndexRequest(uname);
 		boolean exists;
+		
+		//creating new index if does not exists
 		try {
 			exists = client.indices().exists(getRequest, RequestOptions.DEFAULT);
 			if(!exists) {
-				CreateIndexRequest request = new CreateIndexRequest("es");
+				CreateIndexRequest request = new CreateIndexRequest(uname);
 		        request.settings(Settings.builder().put("index.number_of_shards", 1).put("index.number_of_replicas", 2));
 				CreateIndexResponse createIndexResponse = null;
 				try {
@@ -35,29 +39,54 @@ class ESIndexing {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println("response id: " + createIndexResponse.index());
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		//indexing all files in the directory
+        File[] files = dataDir.listFiles();
+        String dirName = dataDir.toString();
+        
+        int count = 0;
+        
+        for (int i = 0; i < files.length; i++) {
+            File f = files[i];
+            if(f.isDirectory()) {
+            	Index(f, uname);
+            } else {
+            	addData(f, client, uname, dirName);
+                count = count+ 1;
+            }
+        }
+        System.out.println(count + " files indexed");
+	}
+	
+	public static void addData(File f, RestHighLevelClient client, String uname, String dirName) {
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("path", "c:/skdankj//a.txt"); 
-		map.put("content", "Ada vaapa ansari...");
 		
-		IndexRequest indexRequest = new IndexRequest("es");
-		indexRequest.id("101");
-		indexRequest.source(map);
-		IndexResponse indexResponse = null;
+		String filePath = f.toString();
 		try {
-			indexResponse = client.index(indexRequest, RequestOptions.DEFAULT);
-		} catch (IOException e) {
+			String content = new String(Files.readAllBytes(Paths.get(filePath)));
+			map.put("file", filePath); 
+			map.put("content", content);
+			map.put("dir", dirName);
+			
+			IndexRequest indexRequest = new IndexRequest(uname);
+			indexRequest.id(filePath);
+			indexRequest.source(map);
+			IndexResponse indexResponse = null;
+			try {
+				indexResponse = client.index(indexRequest, RequestOptions.DEFAULT);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
-		System.out.println("response id: "+indexResponse.getId());
-		System.out.println("response name: "+indexResponse.getResult().name());
 	}
 }
 

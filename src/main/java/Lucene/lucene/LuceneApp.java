@@ -14,7 +14,7 @@ class LuceneApp extends LuceneIndexing implements Runnable {
     private String Word;
     
     @Option(names = "-list", description = "Lists all indexed folder; [usage: 'Lucene -list 'show' '] ")
-	private String List = "show";
+	private String List = "list";
 	
     @Option(names = "-delete", description = "delete indexed folder; [usage: 'Lucene -delete 'C:/Lucene/data' '] ")
 	private String Del;
@@ -28,8 +28,13 @@ class LuceneApp extends LuceneIndexing implements Runnable {
     	if(path !=null && !path.isEmpty()) {
     		try(LuceneIndexing i = new LuceneIndexing()){
                 File dataDir = new File(path);
-                String suffix = "txt";                 
-    			i.index(indexDir, dataDir, suffix);
+                String suffix = "txt";   
+                if(dataDir.exists()) {
+                	i.index(indexDir, dataDir, suffix);
+                } else {
+                	System.out.println("Directory or file does not exist");
+                }
+ 
     		} catch(Exception e) {
     			System.out.println(e);
     		}
@@ -60,12 +65,16 @@ class LuceneApp extends LuceneIndexing implements Runnable {
     	//--Deleting path from list--//
     	if(Del !=null && !Del.isEmpty()) {
     		File DataDir = new File(Del);
-    		try {
-				LuceneDelete.delDocuments(indexDir, "path", DataDir);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+    		if(DataDir.exists()) {
+        		try {
+    				LuceneDelete.delDocuments(indexDir, "path", DataDir);
+    			} catch (IOException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    		} else {
+    			System.out.println("Directory or file does not exist");
+    		}
     	}
     }
     public static void main(String... args) {
