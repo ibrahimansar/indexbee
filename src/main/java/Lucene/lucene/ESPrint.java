@@ -17,7 +17,6 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 class ESPrint {
 	public static void Print(String uname) {
 		ArrayList<String> list = new ArrayList<>();
-		System.out.println("Print in esapp");		// TODO Auto-generated method stub
 		RestHighLevelClient client = new RestHighLevelClient(
 		RestClient.builder(new HttpHost("localhost", 9200, "http")));
 		

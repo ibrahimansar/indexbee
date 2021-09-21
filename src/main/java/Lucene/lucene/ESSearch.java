@@ -13,7 +13,6 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 
 class ESSearch {
 	public static void Search(String Word, String uname) {
-		System.out.println("Searching in ESApp");
         
        RestHighLevelClient client = new RestHighLevelClient(
                RestClient.builder(new HttpHost("localhost", 9200, "http")));

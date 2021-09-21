@@ -20,7 +20,6 @@ class ESDelete {
 	public static void Delete(File dataDir, String uname) {
 		String dir = dataDir.toString();
 		System.out.println(dir);
-		System.out.println("Deleting in ESApp");
 		RestHighLevelClient client = new RestHighLevelClient(
 		RestClient.builder(new HttpHost("localhost", 9200, "http")));
 
