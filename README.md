@@ -1,33 +1,43 @@
-# Lucene App
+# Lucene
 
-This is a Command Line Application. It's written in java and using [Apache Lucene](https://lucene.apache.org/) library 
-to perform some of it's operations such as indexing documents and searching words. 
+A Command Line Application where we can use [Apache Lucene](https://lucene.apache.org/) or [Elastic Search](https://www.elastic.co/)
+to perform some of it's operations such as indexing text documents. 
 
 ## Features
 
-- Indexing the documents inside the folder path we give,
-- Searching a word we want,
-- Storing and showing the indexed folder paths and
-- Deleting the folder path from the list.
+#### Doing the following operations using any one of the methods. 
+- Indexing the documents inside the folder path.
+- Searching a word or a sentance from index.
+- Listing the indexed folder paths and
+- Deleting the index.
 
 ## Installation
 
-- Download [Lucene App](https://drive.google.com/file/d/13tF0pgzOCsqiw_v25infGev4stXBM7HU/view?usp=sharing).
+- Download [Lucene](https://drive.google.com/file/d/13tF0pgzOCsqiw_v25infGev4stXBM7HU/view?usp=sharing).
 - Install it in your local machine.
-- Add installation path in your environmental variable.
+- Add installation path to your environmental variable.
+- To use ElasticSearch, you need to install [Elastic Search](https://www.elastic.co/downloads/elasticsearch) and start it in your local machine. 
 ---
 # Usages
 
-### *Indexing documents*
-To index the text contained in one or more documents, enter the folder path as the example given below.
+### *Setting method*
+First, you need to setup any one of the methods to do the operations. you can set and also switch methods by the following command. 
 
 ```sh
-Lucene -path C:/LuceneData/TestFolder1 
+Lucene -method Lucene (or) ElasticSearch
 ```
 
 
-### *Searching words*
-To search a word, enter your word followed by -search as below.
+### *Indexing documents*
+To index the text documents in a folder.
+
+```sh
+Lucene -index C:/LuceneData/TestFolder1 
+```
+
+
+### *Searching words or sentances*
+To search if a word or a sentance is in index.
 
 ```sh
 Lucene -search Lucene 
@@ -35,13 +45,13 @@ Lucene -search Lucene
 
 
 ### *Printing the folder paths*
-Enter -list "show" command to list all the indexed folder paths
+To get indexed folder's list.
 
 ```sh
 Lucene -list show 
 ```
-### *delete the  folder paths*
-To delete a path from the list, enter the path to be deleted
+### *Delete the indexed path*
+To delete an indexed path from the list.
 
 ```sh
 Lucene -delete C:/LuceneData/TestFolder1
