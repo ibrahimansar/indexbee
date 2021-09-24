@@ -12,6 +12,7 @@ public class LuceneDelete {
 	public static void delDocuments(File indexDir, String field, File termText) throws IOException {
     	String DirectoryName = termText.getName();
     	File Dir = new File(indexDir.getAbsolutePath() + "\\" + DirectoryName); 
+//    	System.out.println(Dir.toString());
     	String dirName = termText.getAbsolutePath();
 		Term term = new Term(field, dirName);
 		IndexWriterConfig conf = new IndexWriterConfig( new StandardAnalyzer());

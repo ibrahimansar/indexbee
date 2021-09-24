@@ -83,7 +83,7 @@ class Main implements Runnable{
 			    		File DataDir = new File(Del);
 			    		if(DataDir.exists()) {
 			        		try {
-			    				LuceneDelete.delDocuments(indexDir, "path", DataDir);
+			    				LuceneDelete.delDocuments(indexDir, "folder", DataDir);
 			    			} catch (IOException e) {
 			    				// TODO Auto-generated catch block
 			    				e.printStackTrace();
@@ -111,7 +111,7 @@ class Main implements Runnable{
 			    	}
 			    	
 			    	//--List--//
-			    	if(!List.isEmpty() && List.equals("show")) {
+			    	if(List!=null && List.equals("show")) {
 			    		ESPrint.Print(uname);
 			    	}
 			    	

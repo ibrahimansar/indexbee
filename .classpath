@@ -41,9 +41,6 @@
 			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/lucene-queries-7.3.1.jar"/>
-	<classpathentry kind="lib" path="D:/lucene-queryparser-7.3.1.jar"/>
-	<classpathentry kind="lib" path="D:/lucene-sandbox-7.3.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mdans/.m2/repository/org/apache/lucene/lucene-core/8.9.0/lucene-core-8.9.0.jar"/>
 	<classpathentry kind="lib" path="D:/jar_files/lucene-backward-codecs-8.9.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
