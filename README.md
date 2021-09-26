@@ -1,6 +1,6 @@
 # Introduction
 
-FlexiSearch is a Command Line Application, for windows, where we can use either [Apache Lucene](https://lucene.apache.org/) or [Elastic Search](https://www.elastic.co/) to perform operations based on indexing machanism such as complex searching. 
+___FlexiSearch___ is a Command Line Application, for windows, where we can use either [Apache Lucene](https://lucene.apache.org/) or [Elastic Search](https://www.elastic.co/) to perform operations based on indexing machanism such as complex searching. 
 
 ## Features
 
@@ -30,7 +30,7 @@ First, you need to setup any one of the methods to do the operations. you can se
 Lucene -method Lucene (or) ElasticSearch
 ```
 
-Once you set the method, it is persistent and no need to set each and every time you run the application.
+_Once you set the method, it is persistent and no need to set each and every time you run the application_.
 
 ### *Finding the current active method*
 Use the following command to find the method, which is currently active. 
@@ -68,4 +68,30 @@ To delete an indexed folder.
 Lucene -delete C:/LuceneData/TestFolder1
 ```
 ---
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Mohamed Ibrahim Ansari - mdansariibrahim1@gmail.com
+
+Project Link: [https://github.com/ibrahimansar/lucene](https://github.com/ibrahimansar/lucene)
 
