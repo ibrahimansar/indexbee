@@ -1,22 +1,25 @@
-# Lucene
+# Introduction
 
-A Command Line Application for windows where we can use [Apache Lucene](https://lucene.apache.org/) or [Elastic Search](https://www.elastic.co/)
-to perform some of it's operations such as indexing text documents. 
+FlexiSearch is a Command Line Application, for windows, where we can use either [Apache Lucene](https://lucene.apache.org/) or [Elastic Search](https://www.elastic.co/) to perform operations based on indexing machanism such as complex searching. 
 
 ## Features
 
-#### Doing the following operations using any one of the methods. 
-- Indexing the documents inside the folder path.
-- Searching a word or a sentance from index.
-- Listing the indexed folder's path and
-- Deleting the indexed folder.
+#### FlexiSearch has many features such as:
+- Indexing the documents inside the folder.
+- Searching a word or a sentance based on indices.
+- Listing the indexed folders.
+- Deleting the indexed folders.
 
 ## Installation
 
 - Download [Lucene](https://drive.google.com/file/d/1OYT2zk_PZBFCUMpTiTB8aynpxrps14Pr/view?usp=sharing).
 - Install it in your local machine.
 - Add installation path to your system variable.
-- To use ElasticSearch, you need to install [Elastic Search](https://www.elastic.co/downloads/elasticsearch) and start it in your local machine. 
+  Add export...
+- To use ElasticSearch, you need to install [Elastic Search](https://www.elastic.co/downloads/elasticsearch). 
+  Add export... 
+- To start ElasticSearch, type elasticsearch in your CLI.
+- Ensure the port is set to 9200.
 ---
 # Usages
 
@@ -27,6 +30,14 @@ First, you need to setup any one of the methods to do the operations. you can se
 Lucene -method Lucene (or) ElasticSearch
 ```
 
+Once you set the method, it is persistent and no need to set each and every time you run the application.
+
+### *Finding the current active method*
+Use the following command to find the method, which is currently active. 
+
+```sh
+Lucene -which method
+```
 
 ### *Indexing documents*
 To index text documents in the folder.
@@ -36,8 +47,8 @@ Lucene -index C:/LuceneData/TestFolder1
 ```
 
 
-### *Searching words or sentances*
-To list out name of the files which contain searched word or sentance.
+### *Searching words or sentences*
+To list the name of the files that contain the results.
 
 ```sh
 Lucene -search Lucene 
@@ -45,16 +56,16 @@ Lucene -search Lucene
 
 
 ### *Printing the folder paths*
-To get indexed folder's list.
+To get the list of indexed folders.
 
 ```sh
 Lucene -list show 
 ```
-### *Delete the indexed path*
+### *Deleting the indexed path*
 To delete an indexed folder.
 
 ```sh
 Lucene -delete C:/LuceneData/TestFolder1
 ```
 ---
-#### **Thanks for using our Application**
+
