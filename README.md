@@ -1,10 +1,10 @@
 # Introduction
 
-___FlexiSearch___ is a Command Line Application, for windows, where we can use either [Apache Lucene](https://lucene.apache.org/) or [Elastic Search](https://www.elastic.co/) to perform operations based on indexing machanism such as complex searching. 
+___IndexBee___ is a Command Line Application, for windows, where we can use either [Apache Lucene](https://lucene.apache.org/) or [Elastic Search](https://www.elastic.co/) to perform operations based on indexing machanism such as complex searching. 
 
 ## Features
 
-#### FlexiSearch has many features such as:
+#### IndexBee has many features such as:
 - Indexing the documents inside the folder.
 - Searching a word or a sentance based on indices.
 - Listing the indexed folders.
@@ -12,7 +12,7 @@ ___FlexiSearch___ is a Command Line Application, for windows, where we can use e
 
 ## Installation
 
-- Download [Lucene](https://drive.google.com/file/d/1OYT2zk_PZBFCUMpTiTB8aynpxrps14Pr/view?usp=sharing).
+- Download [IndexBee](https://drive.google.com/file/d/1OYT2zk_PZBFCUMpTiTB8aynpxrps14Pr/view?usp=sharing).
 - Install it in your local machine.
 - Add installation path to your system variable.
   Add export...
