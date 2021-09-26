@@ -15,6 +15,7 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
+//Lucene Search class
 public class LuceneSearch {
     static void searchIndex(File indexDir, String queryStr, int maxHits) throws Exception {   
     	ArrayList<String> list = new ArrayList<>();

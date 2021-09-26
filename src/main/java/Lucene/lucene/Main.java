@@ -16,6 +16,9 @@ class Main implements Runnable{
 	@Option(names = "-method", description = "Method to be used; [usage: 'Lucene -method Lucene ']")
 	private String Method;
 	
+	@Option(names = "-which", description = "To know which method is in process; [usage: 'Lucene -which method ']")
+	private String Which;
+	
 	@Option(names = "-index", description = "folder to be indexed; [usage: 'Lucene -index C:/Lucene/data '] ")
 	private String path;
 	
@@ -30,12 +33,20 @@ class Main implements Runnable{
 	
 	public void run() {
 		
+		//setting or switching method
 		if(Method!=null && !Method.isEmpty()) {
 			AppName.setAppName(Method, uname);
 		}
 		
 		try {
 			String AppName = GetAppName.getAppName(uname);
+			
+			//know current method
+			if(Which!=null && Which.equals("method")) {
+				System.out.println("You are current using " + AppName);
+			}
+			
+			//check whether the method is Lucene or ElasticSearch
 			if(AppName!=null && (AppName.equals("Lucene") || AppName.equals("ElasticSearch") )) {
 				if(AppName.equals("Lucene")) {
 					//LuceneApp

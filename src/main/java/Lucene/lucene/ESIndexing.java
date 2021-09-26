@@ -17,6 +17,7 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.settings.Settings;
 
+//ElasticSearch Index class
 class ESIndexing {
 	@SuppressWarnings("deprecation")
 	public static void Index(File dataDir, String uname){

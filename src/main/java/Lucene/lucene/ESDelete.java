@@ -16,6 +16,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
+//ElasticSearch Delete class
 class ESDelete {
 	public static void Delete(File dataDir, String uname) {
 		String dir = dataDir.toString();

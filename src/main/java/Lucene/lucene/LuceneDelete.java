@@ -8,6 +8,7 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.store.FSDirectory;
 
+//Lucene Delete class
 public class LuceneDelete {
 	public static void delDocuments(File indexDir, String field, File termText) throws IOException {
     	String DirectoryName = termText.getName();

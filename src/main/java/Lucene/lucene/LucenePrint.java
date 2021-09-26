@@ -8,7 +8,7 @@ import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
-
+//Lucene List class
 public class LucenePrint {	
     static void PrintIndex(File indexDir) throws IOException { 
     	ArrayList<String> list = new ArrayList<>();

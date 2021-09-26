@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.util.Scanner;
 
 public class AppName {
+	//set the method
 	public static void setAppName(String Method, String uname) {
 		if(Method!=null && !Method.isEmpty()) {
 			if(Method.equals("Lucene") || Method.equals("ElasticSearch")) {
@@ -30,6 +31,7 @@ public class AppName {
 
 class GetAppName{
 	public static String data;
+	//get the method
 	public static String getAppName(String uname) throws FileNotFoundException {
 		File f = new File("C:/Users/" + uname + "/LuceneConfig.txt");
         if(f.length()==0) {

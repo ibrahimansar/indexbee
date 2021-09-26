@@ -12,6 +12,7 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.FSDirectory;
 
+//Lucene Index class
 class LuceneIndexing implements AutoCloseable{
 	public void index(File indexDir, File dataDir, String suffix) throws IOException {       
         indexDirectory(indexDir, dataDir, suffix);            

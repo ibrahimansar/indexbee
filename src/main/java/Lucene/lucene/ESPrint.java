@@ -14,6 +14,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
+//ElasticSearch List class
 class ESPrint {
 	public static void Print(String uname) {
 		ArrayList<String> list = new ArrayList<>();
