@@ -15,9 +15,13 @@ ___IndexBee___ is a Command Line Application, for windows, where we can use eith
 - Download [IndexBee](https://drive.google.com/file/d/1OYT2zk_PZBFCUMpTiTB8aynpxrps14Pr/view?usp=sharing).
 - Install it in your local machine.
 - Add installation path to your system variable.
-  Add export...
+  ```sh
+  set PATH=%PATH%;C:\indexbee-installation-path\bin
+  ```
 - To use ElasticSearch, you need to install [Elastic Search](https://www.elastic.co/downloads/elasticsearch). 
-  Add export... 
+    ```sh
+  set PATH=%PATH%;C:\elasticsearch-installation-path\bin
+  ```
 - To start ElasticSearch, type elasticsearch in your CLI.
 - Ensure the port is set to 9200.
 ---
@@ -27,7 +31,7 @@ ___IndexBee___ is a Command Line Application, for windows, where we can use eith
 First, you need to setup any one of the methods to do the operations. you can set and also switch methods by the following command. 
 
 ```sh
-Lucene -method Lucene (or) ElasticSearch
+indexbee -method Lucene (or) ElasticSearch
 ```
 
 _Once you set the method, it is persistent and no need to set each and every time you run the application_.
@@ -36,14 +40,14 @@ _Once you set the method, it is persistent and no need to set each and every tim
 Use the following command to find the method, which is currently active. 
 
 ```sh
-Lucene -which method
+indexbee -which method
 ```
 
 ### *Indexing documents*
 To index text documents in the folder.
 
 ```sh
-Lucene -index C:/LuceneData/TestFolder1 
+indexbee -index C:/LuceneData/TestFolder1 
 ```
 
 
@@ -51,7 +55,7 @@ Lucene -index C:/LuceneData/TestFolder1
 To list the name of the files that contain the results.
 
 ```sh
-Lucene -search Lucene 
+indexbee -search Lucene 
 ```
 
 
@@ -59,13 +63,13 @@ Lucene -search Lucene
 To get the list of indexed folders.
 
 ```sh
-Lucene -list show 
+indexbee -list show 
 ```
 ### *Deleting the indexed path*
 To delete an indexed folder.
 
 ```sh
-Lucene -delete C:/LuceneData/TestFolder1
+indexbee -delete C:/LuceneData/TestFolder1
 ```
 ---
 
