@@ -13,12 +13,17 @@ public class LuceneDelete {
 	public static void delDocuments(File indexDir, String field, File termText) throws IOException {
     	String DirectoryName = termText.getName();
     	File Dir = new File(indexDir.getAbsolutePath() + "\\" + DirectoryName); 
-//    	System.out.println(Dir.toString());
     	String dirName = termText.getAbsolutePath();
 		Term term = new Term(field, dirName);
 		IndexWriterConfig conf = new IndexWriterConfig( new StandardAnalyzer());
 		IndexWriter indexWriter = new IndexWriter( FSDirectory.open(Dir.toPath()), conf);
-		indexWriter.deleteDocuments(term);
+		try {
+			indexWriter.deleteDocuments(term);
+			System.out.println(termText.toString() + " deleted");
+		} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		indexWriter.close();
 	}
 }

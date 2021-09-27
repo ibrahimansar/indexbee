@@ -48,6 +48,7 @@ class ESDelete {
 			         		        DeleteResponse deleteResponse = null;
 			         				try {
 			         					deleteResponse = client.delete(deleteRequest, RequestOptions.DEFAULT);
+			         					System.out.println(dataDir.toString() + " deleted");
 			         				} catch (IOException e) {
 			         					// TODO Auto-generated catch block
 			         					e.printStackTrace();
