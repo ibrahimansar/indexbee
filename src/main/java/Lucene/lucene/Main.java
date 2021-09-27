@@ -1,6 +1,7 @@
 package Lucene.lucene;
 
 import java.io.File;
+//test
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -22,13 +23,13 @@ class Main implements Runnable{
 	@Option(names = "-index", description = "folder to be indexed; [usage: 'Lucene -index C:/Lucene/data '] ")
 	private String path;
 	
-    	@Option(names = "-search", description = "Searches given name; [usage: 'Lucene -search Lucene '] ")
-    	private String Word;
+	@Option(names = "-search", description = "Searches given name; [usage: 'Lucene -search Lucene '] ")
+	private String Word;
     
-    	@Option(names = "-list", description = "Lists all indexed folder; [usage: 'Lucene -list show '] ")
+	@Option(names = "-list", description = "Lists all indexed folder; [usage: 'Lucene -list show '] ")
 	private String List;
 	
-    	@Option(names = "-delete", description = "delete indexed folder; [usage: 'Lucene -delete C:/Lucene/data '] ")
+	@Option(names = "-delete", description = "delete indexed folder; [usage: 'Lucene -delete C:/Lucene/data '] ")
 	private String Del;
 	
 	public void run() {
