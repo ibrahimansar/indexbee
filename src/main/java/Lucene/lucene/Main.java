@@ -1,7 +1,6 @@
 package Lucene.lucene;
 
 import java.io.File;
-//test
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
