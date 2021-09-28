@@ -1,4 +1,4 @@
-package Lucene.lucene;
+package indexbee;
 
 /*
    Copyright 2017 Remko Popma
@@ -42,16 +42,17 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import Lucene.lucene.CommandLine.Help.Ansi.IStyle;
-import Lucene.lucene.CommandLine.Help.Ansi.Style;
-import Lucene.lucene.CommandLine.Help.Ansi.Text;
-import Lucene.lucene.CommandLine.Model.*;
-import Lucene.lucene.CommandLine.ParseResult.GroupMatchContainer;
 
+import indexbee.CommandLine.Help.Ansi.IStyle;
+import indexbee.CommandLine.Help.Ansi.Style;
+import indexbee.CommandLine.Help.Ansi.Text;
+import indexbee.CommandLine.Model.*;
+import indexbee.CommandLine.ParseResult.GroupMatchContainer;
+
+import static indexbee.CommandLine.Help.Column.Overflow.SPAN;
+import static indexbee.CommandLine.Help.Column.Overflow.TRUNCATE;
+import static indexbee.CommandLine.Help.Column.Overflow.WRAP;
 import static java.util.Locale.ENGLISH;
-import static Lucene.lucene.CommandLine.Help.Column.Overflow.SPAN;
-import static Lucene.lucene.CommandLine.Help.Column.Overflow.TRUNCATE;
-import static Lucene.lucene.CommandLine.Help.Column.Overflow.WRAP;
 
 /**
  * <p>

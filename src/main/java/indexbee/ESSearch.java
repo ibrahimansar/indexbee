@@ -1,4 +1,4 @@
-package Lucene.lucene;
+package indexbee;
 
 import java.io.IOException;
 import org.apache.http.HttpHost;

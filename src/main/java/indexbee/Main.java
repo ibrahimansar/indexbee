@@ -1,11 +1,11 @@
-package Lucene.lucene;
+package indexbee;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import Lucene.lucene.CommandLine.Command;
-import Lucene.lucene.CommandLine.Option;
+import indexbee.CommandLine.Command;
+import indexbee.CommandLine.Option;
 
 @Command(name = "Lucene", description = "App to perform Lucene indexing and searching operations using core lucene and Elastic Search", mixinStandardHelpOptions = true, version = "1.0")
 class Main implements Runnable{

@@ -1,4 +1,4 @@
-package Lucene.lucene;
+package indexbee;
 
 import java.io.File;
 import java.io.IOException;
