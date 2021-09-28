@@ -1,4 +1,4 @@
-package Lucene.lucene;
+package indexbee;
 
 import org.junit.jupiter.api.Test;
 
