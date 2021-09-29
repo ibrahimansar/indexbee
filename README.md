@@ -12,7 +12,7 @@ ___IndexBee___ is a Command Line Application, for windows, where we can use eith
 
 ## Installation
 
-- Download [IndexBee](https://drive.google.com/file/d/1OYT2zk_PZBFCUMpTiTB8aynpxrps14Pr/view?usp=sharing).
+- Download [IndexBee](https://drive.google.com/file/d/18yMT-mgP1x4H_7tufuMLjGyRpFQh9aiQ/view?usp=sharing).
 - Install it in your local machine.
 - Add installation path to your system variable.
 - To use ElasticSearch, you need to install [Elastic Search](https://www.elastic.co/downloads/elasticsearch) and add it's installation path to your system variable if needed. 
@@ -91,5 +91,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Mohamed Ibrahim Ansari - mdansariibrahim1@gmail.com
 
-Project Link: [https://github.com/ibrahimansar/lucene](https://github.com/ibrahimansar/lucene)
+Project Link: [https://github.com/ibrahimansar/indexbee](https://github.com/ibrahimansar/indexbee)
 
