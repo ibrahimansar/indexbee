@@ -89,7 +89,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Mohamed Ibrahim Ansari - mdansariibrahim1@gmail.com
+Mohamed Ibrahim Ansari - i.ansari@zohomail.com
 
 Project Link: [https://github.com/ibrahimansar/indexbee](https://github.com/ibrahimansar/indexbee)
 
