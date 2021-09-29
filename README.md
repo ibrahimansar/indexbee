@@ -16,7 +16,7 @@ ___IndexBee___ is a Command Line Application, for windows, where we can use eith
 - Install it in your local machine.
 - Add installation path to your system variable.
   ```sh
-  set PATH=%PATH%;C:\...\indexbee-VERSION\bin
+  set PATH=%PATH%;C:\...\indexbee
   ```
 - To use ElasticSearch, you need to install [Elastic Search](https://www.elastic.co/downloads/elasticsearch). 
     ```sh
