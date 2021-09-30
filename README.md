@@ -49,9 +49,14 @@ indexbee -index C:/LuceneData/TestFolder1
 To list the name of the files that contain the results.
 
 ```sh
-indexbee -search Lucene 
+indexbee -search Hello 
 ```
 
+If you intend to search by a sentance, enclose it with double quotes
+
+```sh
+indexbee -search "Hello Doe!"
+```
 
 ### *Printing the folder paths*
 To get the list of indexed folders.
