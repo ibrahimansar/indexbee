@@ -1,11 +1,10 @@
 package indexbee;
 
 import java.io.IOException;
-import org.apache.http.HttpHost;
+
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.search.SearchHit;
@@ -13,11 +12,7 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 
 //ElasticSearch Search class
 class ESSearch {
-	public static void Search(String Word, String uname) {
-        
-       RestHighLevelClient client = new RestHighLevelClient(
-               RestClient.builder(new HttpHost("localhost", 9200, "http")));
-        
+	public static void Search(String Word, String uname, RestHighLevelClient client) {
        SearchRequest searchRequest = new SearchRequest(uname);
        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
        MatchQueryBuilder qb = new MatchQueryBuilder("content",Word);
