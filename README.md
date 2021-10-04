@@ -12,16 +12,10 @@ ___IndexBee___ is a Command Line Application, for windows, where we can use eith
 
 ## Installation
 
-- Download [IndexBee](https://drive.google.com/file/d/1OYT2zk_PZBFCUMpTiTB8aynpxrps14Pr/view?usp=sharing).
+- Download [IndexBee](https://drive.google.com/file/d/18yMT-mgP1x4H_7tufuMLjGyRpFQh9aiQ/view?usp=sharing).
 - Install it in your local machine.
 - Add installation path to your system variable.
-  ```sh
-  set PATH=%PATH%;C:\...\indexbee-VERSION\bin
-  ```
-- To use ElasticSearch, you need to install [Elastic Search](https://www.elastic.co/downloads/elasticsearch). 
-    ```sh
-  set PATH=%PATH%;C:\...\elasticsearch-VERSION\bin
-  ```
+- To use ElasticSearch, you need to install [Elastic Search](https://www.elastic.co/downloads/elasticsearch) and add it's installation path to your system variable if needed. 
 - To start ElasticSearch, type elasticsearch in your CLI.
 - Ensure the port is set to 9200.
 ---
@@ -55,9 +49,14 @@ indexbee -index C:/LuceneData/TestFolder1
 To list the name of the files that contain the results.
 
 ```sh
-indexbee -search Lucene 
+indexbee -search Hello 
 ```
 
+If you intend to search by a sentance, enclose it with double quotes
+
+```sh
+indexbee -search "Hello Doe!"
+```
 
 ### *Printing the folder paths*
 To get the list of indexed folders.
@@ -95,7 +94,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Mohamed Ibrahim Ansari - mdansariibrahim1@gmail.com
+Mohamed Ibrahim Ansari - i.ansari@zohomail.com
 
-Project Link: [https://github.com/ibrahimansar/lucene](https://github.com/ibrahimansar/lucene)
+Project Link: [https://github.com/ibrahimansar/indexbee](https://github.com/ibrahimansar/indexbee)
 
