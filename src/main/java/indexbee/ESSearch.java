@@ -12,7 +12,7 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 
 //ElasticSearch Search class
 class ESSearch {
-	public static void Search(String Word, String uname, RestHighLevelClient client) {
+	public static void search(String Word, String uname, RestHighLevelClient client) {
        SearchRequest searchRequest = new SearchRequest(uname);
        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
        MatchQueryBuilder qb = new MatchQueryBuilder("content",Word);

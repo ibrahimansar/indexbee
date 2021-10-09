@@ -35,9 +35,9 @@ public class LuceneSearch {
 			ScoreDoc[] hits = topDocs.scoreDocs;
 			for (int i = 0; i < hits.length; i++) {
 				int docId = hits[i].doc;
-				Document d = searcher.doc(docId);
-				if (!list.contains(d.get("path"))) {
-					list.add(d.get("path"));
+				Document doc = searcher.doc(docId);
+				if (!list.contains(doc.get("path"))) {
+					list.add(doc.get("path"));
 				}
 			}
 

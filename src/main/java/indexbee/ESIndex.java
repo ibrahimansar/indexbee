@@ -16,9 +16,9 @@ import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.settings.Settings;
 
 //ElasticSearch Index class
-class ESIndexing {
+class ESIndex {
 	@SuppressWarnings("deprecation")
-	public static void Index(File dataDir, String uname, RestHighLevelClient client) throws IOException {
+	public static void index(File dataDir, String uname, RestHighLevelClient client) throws IOException {
 		GetIndexRequest getRequest = new GetIndexRequest(uname);
 		boolean exists;
 
@@ -37,20 +37,20 @@ class ESIndexing {
 		int count = 0;
 
 		for (int i = 0; i < files.length; i++) {
-			File f = files[i];
-			if (f.isDirectory()) {
-				Index(f, uname, client);
+			File file = files[i];
+			if (file.isDirectory()) {
+				index(file, uname, client);
 			} else {
-				addData(f, client, uname, dirName);
+				addData(file, client, uname, dirName);
 				count = count + 1;
 			}
 		}
 		System.out.println(count + " files indexed");
 	}
 
-	public static void addData(File f, RestHighLevelClient client, String uname, String dirName) throws IOException {
+	public static void addData(File file, RestHighLevelClient client, String uname, String dirName) throws IOException {
 		HashMap<String, String> map = new HashMap<String, String>();
-		String filePath = f.toString();
+		String filePath = file.toString();
 		String content = new String(Files.readAllBytes(Paths.get(filePath)));
 		map.put("file", filePath);
 		map.put("content", content);

@@ -16,7 +16,7 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 
 //ElasticSearch Delete class
 class ESDelete {
-	public static void Delete(File dataDir, String uname, RestHighLevelClient client) {
+	public static void delete(File dataDir, String uname, RestHighLevelClient client) {
 		String dir = dataDir.toString();
 		GetIndexRequest getRequest = new GetIndexRequest(uname);
 		boolean exists;
@@ -34,8 +34,8 @@ class ESDelete {
 					SearchHit[] searchHit = searchResponse.getHits().getHits();
 					for (SearchHit hit : searchHit) {
 						map = hit.getId();
-						File f = new File(map);
-						if (f.getParent().equals(dir)) {
+						File file = new File(map);
+						if (file.getParent().equals(dir)) {
 							DeleteRequest deleteRequest = new DeleteRequest(uname, map);
 							DeleteResponse deleteResponse = null;
 							deleteResponse = client.delete(deleteRequest, RequestOptions.DEFAULT);

@@ -15,9 +15,8 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 
 //ElasticSearch List class
 class ESPrint {
-	public static void Print(String uname, RestHighLevelClient client) throws IOException {
+	public static void print(String uname, RestHighLevelClient client) throws IOException {
 		ArrayList<String> list = new ArrayList<>();
-
 		GetIndexRequest getRequest = new GetIndexRequest(uname);
 		boolean exists;
 		exists = client.indices().exists(getRequest, RequestOptions.DEFAULT);

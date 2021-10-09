@@ -18,35 +18,35 @@ class Main implements Runnable {
 	File indexDir = new File("C:/Users/" + uname + "/Index");
 
 	@Option(names = "-method", description = "Method to be used; [usage: 'Lucene -method Lucene ']")
-	private String Method;
+	private String method;
 
 	@Option(names = "-which", description = "To know which method is in process; [usage: 'Lucene -which method ']")
-	private String Which;
+	private String which;
 
 	@Option(names = "-index", description = "folder to be indexed; [usage: 'Lucene -index C:/Lucene/data '] ")
 	private String path;
 
 	@Option(names = "-search", description = "Searches given name; [usage: 'Lucene -search Lucene '] ")
-	private String Word;
+	private String word;
 
 	@Option(names = "-list", description = "Lists all indexed folder; [usage: 'Lucene -list show '] ")
-	private String List;
+	private String list;
 
 	@Option(names = "-delete", description = "delete indexed folder; [usage: 'Lucene -delete C:/Lucene/data '] ")
-	private String Del;
+	private String del;
 
 	public void run() {
 
 		// setting or switching method
-		if (Method != null && !Method.isEmpty()) {
-			AppName.setAppName(Method, uname);
+		if (method != null && !method.isEmpty()) {
+			AppName.setAppName(method, uname);
 		}
 
 		try {
 			String AppName = GetAppName.getAppName(uname);
 
 			// know current method
-			if (Which != null && Which.equals("method")) {
+			if (which != null && which.equals("method")) {
 				if (AppName != null) {
 					System.out.println("You are current using " + AppName);
 				} else {
@@ -61,11 +61,11 @@ class Main implements Runnable {
 
 					// --indexing--//
 					if (path != null && !path.isEmpty()) {
-						try (LuceneIndexing i = new LuceneIndexing()) {
+						try (LuceneIndex luceneIndex = new LuceneIndex()) {
 							File dataDir = new File(path);
 							String suffix = "txt";
 							if (dataDir.exists()) {
-								i.index(indexDir, dataDir, suffix);
+								luceneIndex.index(indexDir, dataDir, suffix);
 							} else {
 								System.out.println("Directory or file does not exist");
 							}
@@ -76,9 +76,9 @@ class Main implements Runnable {
 					}
 
 					// --searching--//
-					if (Word != null && !Word.isEmpty()) {
+					if (word != null && !word.isEmpty()) {
 						System.out.println("The word found in");
-						String query = Word;
+						String query = word;
 						int hits = 10000;
 						try {
 							LuceneSearch.searchIndex(indexDir, query, hits);
@@ -89,10 +89,10 @@ class Main implements Runnable {
 					}
 
 					// --List--//
-					if (List != null && List.equals("show")) {
+					if (list != null && list.equals("show")) {
 						System.out.println("List of the indexed folder is");
 						try {
-							LucenePrint.PrintIndex(indexDir);
+							LucenePrint.printIndex(indexDir);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -100,61 +100,60 @@ class Main implements Runnable {
 					}
 
 					// --Deleting path from list--//
-					if (Del != null && !Del.isEmpty()) {
-						File DataDir = new File(Del);
-						if (DataDir.exists()) {
-							try {
-								LuceneDelete.delDocuments(indexDir, "folder", DataDir);
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+					if (del != null && !del.isEmpty()) {
+						try (LuceneDelete luceneDelete = new LuceneDelete()) {
+							File DataDir = new File(del);
+							if (DataDir.exists()) {
+								luceneDelete.delDocuments(indexDir, "folder", DataDir);
+							} else {
+								System.out.println("Directory or file does not exist");
 							}
-						} else {
-							System.out.println("Directory or file does not exist");
 						}
 					}
+					
 				} else if (AppName.equals("ElasticSearch")) {
 					// ElasticSearch
 					org.apache.log4j.Logger.getRootLogger().setLevel(org.apache.log4j.Level.OFF);
-					
+
 					try {
 						RestHighLevelClient client = new RestHighLevelClient(
-						RestClient.builder(new HttpHost("localhost", 9200, "http")));
+								RestClient.builder(new HttpHost("localhost", 9200, "http")));
 
 						// --indexing--//
 						if (path != null && !path.isEmpty()) {
 							File dataDir = new File(path);
 							if (dataDir.exists()) {
-								ESIndexing.Index(dataDir, uname, client);
+								ESIndex.index(dataDir, uname, client);
 							} else {
 								System.out.println("Directory or file does not exist");
 							}
 						}
 
 						// --searching--//
-						if (Word != null && !Word.isEmpty()) {
+						if (word != null && !word.isEmpty()) {
 							System.out.println("The word found in");
-							ESSearch.Search(Word, uname, client);
+							ESSearch.search(word, uname, client);
 						}
 
 						// --List--//
-						if (List != null && List.equals("show")) {
+						if (list != null && list.equals("show")) {
 							System.out.println("List of the indexed folder is");
-							ESPrint.Print(uname, client);
+							ESPrint.print(uname, client);
 						}
 
 						// --Deleting path from list--//
-						if (Del != null && !Del.isEmpty()) {
-							File dataDir = new File(Del);
+						if (del != null && !del.isEmpty()) {
+							File dataDir = new File(del);
 							if (dataDir.exists()) {
-								ESDelete.Delete(dataDir, uname, client);
+								ESDelete.delete(dataDir, uname, client);
 							} else {
 								System.out.println("Directory or file does not exist");
 							}
 						}
 					} catch (ElasticsearchException e) {
 						System.out.println("Failed to run elasticsearch.");
-						System.out.println("Please ensure the elastic search started properly and the port is set to 9200");
+						System.out.println(
+								"Please ensure the elastic search started properly and the port is set to 9200");
 					}
 				}
 			} else {
